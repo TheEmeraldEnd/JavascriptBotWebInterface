@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="storyContentText"><%=storyContent%></p>
+    <p style="display:none" id="storyTitleIdElement"><%=storyTitleId%></p>
+    
+    <button id="choiceContentButton1"><%=choice1content%></button>
+    <p style="display:none" id="choiceStoryId1"><%=choiceStoryId1%></p>
+
+    <button id="choiceContentButton2"><%=choice2content%></button>
+    <p style="display:none" id="choiceStoryId2"><%=choiceStoryId2%></p>
+
+    <button id="choiceContentButton3"><%=choice3content%></button>
+    <p style="display:none" id="choiceStoryId3"><%=choiceStoryId3%></p>
+
+    <button id="choiceContentButton4"><%=choice4content%></button>
+    <p style="display:none" id="choiceStoryId4"><%=choiceStoryId4%></p>
+
+
+    <script defer>
+        //Get the story title id number
+        let titleIdElement = document.getElementById('storyTitleIdElement');
+        let storyTitleId = titleIdElement.innerText;
+        
+        //Loop through buttons 1 through 4
+        for(let i = 1; i <= 4; i++){
+            //Get the button
+            let tempButton = document.getElementById(`choiceContentButton${i}`);
+            let choiceStoryId = document.getElementById(`choiceStoryId${i}`).innerText
+
+            console.log(tempButton.innerText);
+
+            if (tempButton.innerText.trim() == ""){
+                tempButton.setAttribute('style', 'display:none');
+            }
+            else{
+                tempButton.setAttribute('style', 'display:inline');
+
+                tempButton.addEventListener('click', function goToFunction(){
+                    document.location.href = `http://localhost:3000/storyContent?storyContentid=${choiceStoryId.toString()}&storyTitleId=${storyTitleId}`;
+                });
+            }
+        }
+    </script>
+</body>
+</html>

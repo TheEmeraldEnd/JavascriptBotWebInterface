@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="http://localhost:3000/storyContent?storyContentid=300&storyTitleId=0">To Test Story</a>
+
+    <ul>
+        <% for(var i=0; i<listOfTitles.length; i++) { %>
+            <li>
+                <a href="http://localhost:3000/storyContent?storyContentid=300&storyTitleId=0">
+                    <%= listOfTitles[i] %>
+                </a>
+            </li>
+        <% } %>
+    </ul>
+
+    <p id="titleIdIndexElement" style="display:none">
+        <%=titleIdIndex%>
+    </p>
+
+    <button id="decrementButton">
+        &lt=
+    </button>
+
+    <button id="incrementButton">
+        =&gt
+    </button>
+
+    <script>
+        //Get the titleIndexId
+        var titleIndexId = document.getElementById('titleIdIndexElement').innerText;
+
+        //Get the reference to the increment button
+        let incrementButton = document.getElementById('incrementButton');
+        incrementButton.addEventListener('click', function goToFunction(){
+            document.location.href = `http://localhost:3000/titleDisplay/${titleIndexId}/incrementIndex`;
+        });
+
+        //Get the reference to the decrement button
+        let decrementButton = document.getElementById('decrementButton');
+        decrementButton.addEventListener('click', function goToFunction(){
+            document.location.href = `http://localhost:3000/titleDisplay/${titleIndexId}/decrementIndex`;
+        })
+
+    </script>
+</body>
+</html>
